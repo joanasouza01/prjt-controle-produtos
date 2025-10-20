@@ -36,4 +36,20 @@ def add_produtos(nome, categoria, preco, quantidade):
             cursor.close()
             conexao.close()
 
+def atualizar_preco_quantidade(id_produtos, novo_preco, nova_quantidade):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "UPDATE produtos SET preco = %s, quantidade = %s WHERE id = %s",
+                (novo_preco, nova_quantidade, id_produtos)
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f"erro ao tentar atualizar preço e quantidade")
+        finally:
+            cursor.close()
+            conexao.close()
+
+atualizar_preco_quantidade(1, 7, 3)
 
