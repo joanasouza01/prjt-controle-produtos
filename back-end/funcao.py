@@ -22,19 +22,20 @@ def criar_tabela():
 criar_tabela()
 
 def add_produtos(nome, categoria, preco, quantidade):
-    conexao, cursor = conectar()
-    if conexao:
-        try:
-            cursor.execute(
-                "INSERT INTO produtos (nome, categoria, preco, quantidade) VALUES (%s, %s, %s, %s)",
-                (nome, categoria, preco, quantidade)
-            )
-            conexao.commit()
-        except Exception as erro:
-            print(f"erro ao adicionar produto {erro}")
-        finally:
-            cursor.close()
-            conexao.close()
+        conexao, cursor = conectar()
+        if conexao:
+            try:
+                cursor.execute(
+                    "INSERT INTO produtos (nome, categoria, preco, quantidade) VALUES (%s, %s, %s, %s)",
+                    (nome, categoria, preco, quantidade)
+                )
+                conexao.commit()
+            except Exception as erro:
+                print(f"erro ao adicionar produto {erro}")
+            finally:
+                cursor.close()
+                conexao.close()
+
 
 def listar_produtos():
     conexao, cursor = conectar()
@@ -45,20 +46,20 @@ def listar_produtos():
             )
             return cursor.fetchall()
         except Exception as erro:
-            print(f"erro ao tentar listar filmes")
+            print(f"erro ao tentar listar produtos")
         finally:
             cursor.close()
             conexao.close()
 
-listar_produtos()
 
-def atualizar_preco_quantidade(id_produtos, novo_preco, nova_quantidade):
+
+def atualizar_preco_quantidade(id_produto, novo_preco, nova_quantidade):
     conexao, cursor = conectar()
     if conexao:
         try:
             cursor.execute(
                 "UPDATE produtos SET preco = %s, quantidade = %s WHERE id = %s",
-                (novo_preco, nova_quantidade, id_produtos)
+                (novo_preco, nova_quantidade, id_produto)
             )
             conexao.commit()
         except Exception as erro:
@@ -80,4 +81,5 @@ def deletar_produto(id_produto):
         finally:
             cursor.close()
             conexao.close()
+
 

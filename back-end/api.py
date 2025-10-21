@@ -38,7 +38,7 @@ def listar_produtos():
 
 @app.put("/produtos/{id_produtos}")
 def atualizar__preco_quantidade(id_produtos: int, novo_preco: float, nova_quantidade: int):
-    produto = funcao.atualizar_preco_quantidade
+    produto = funcao.atualizar_preco_quantidade(id_produtos)
     if produto:
         funcao.atualizar_preco_quantidade(id_produtos, novo_preco, nova_quantidade)
         return{"mensagem": "produto atualizado com sucesso"}
