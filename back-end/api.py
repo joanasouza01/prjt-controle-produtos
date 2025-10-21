@@ -37,7 +37,7 @@ def listar_produtos():
     return{"produtos": lista}
 
 @app.put("/produtos/{id_produtos}")
-def atualizar_coisas(id_produtos: int, novo_preco: float, nova_quantidade: int):
+def atualizar__preco_quantidade(id_produtos: int, novo_preco: float, nova_quantidade: int):
     produto = funcao.atualizar_preco_quantidade
     if produto:
         funcao.atualizar_preco_quantidade(id_produtos, novo_preco, nova_quantidade)
